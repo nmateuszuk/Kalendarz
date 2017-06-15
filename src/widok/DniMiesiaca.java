@@ -121,9 +121,10 @@ public class DniMiesiaca {
 		wypelnijTabele();
 	}
 
-	// public int zwrocMiesiac(int i) {
-	// return dniMiesiaca[i];
-	// }
+	 public int zwrocMiesiac() {
+	int i= calendar.get(Calendar.MONTH);
+	 return i;
+	 }
 
 	public int zwrocTabele(int i, int j) {
 		return this.dni[i][j];
@@ -132,4 +133,6 @@ public class DniMiesiaca {
 	public JLabel zwrocEtykiete(int i, int j) {
 		return this.dniEtykiety[i][j];
 	}
+	
+	
 }

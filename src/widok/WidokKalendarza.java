@@ -14,6 +14,7 @@ import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.util.Calendar;
 import java.util.Date;
 
 import kontroler.ObslugaKalendarza;
@@ -46,6 +47,11 @@ public class WidokKalendarza extends JFrame {
 	public WidokKalendarza() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 620, 418);
+		
+		//////////////////////////// data
+		Date dzis = new Date();
+		DniMiesiaca dniMiesiaca = new DniMiesiaca(dzis);
+		
 		
 		//lista menu
 		JMenuBar menuBar = new JMenuBar();
@@ -82,8 +88,11 @@ public class WidokKalendarza extends JFrame {
 		prawyPrzycisk.setBorder(BorderFactory.createLineBorder(Color.white, 1));
 		contentPane.add(prawyPrzycisk);
 		
-		JPanel miesiacEtykieta = new JPanel();
+		JLabel miesiacEtykieta = new JLabel();
 		miesiacEtykieta.setBounds(368, 53, 139, 37);
+		miesiacEtykieta.setText(miesiace[dniMiesiaca.zwrocMiesiac()]);
+		miesiacEtykieta.setHorizontalAlignment(JLabel.CENTER);
+		miesiacEtykieta.setVerticalAlignment(JLabel.CENTER);
 		//miesiacEtykieta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		contentPane.add(miesiacEtykieta);
 		
@@ -95,15 +104,16 @@ public class WidokKalendarza extends JFrame {
 		//dniTygodnia.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		contentPane.add(dniTygodnia);
 		
+		
+///////////////////////////////////////////////////////
 		JPanel dniMiesiac = new JPanel();
 		dniMiesiac.setBounds(300, 119, 264, 180);
 		//dniMiesiac.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		dniMiesiac.setLayout(null);
 		contentPane.add(dniMiesiac);
 		
-		///////////////////////////////////////////////////////
-		Date dzis = new Date();
-		DniMiesiaca dniMiesiaca = new DniMiesiaca(dzis);
+		
+		
 //		dzis.wypelnijTabele();
 		
 //		JLabel tabelamiesiac[][] = new JLabel[6][7];
@@ -148,4 +158,7 @@ public class WidokKalendarza extends JFrame {
 		dayName += dni[6];
 		return dayName;
 	}
+	
+
+	
 }
