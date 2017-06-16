@@ -1,13 +1,13 @@
 package widok;
 
-import java.awt.Color;
+//import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.BorderFactory;
+//import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 public class DniMiesiaca {
@@ -88,14 +88,13 @@ public class DniMiesiaca {
 		// }
 	}
 
-	private JLabel stworzEtykiete(String tekst, Point punkt, int szerokosc,
-			int wysokosc) {
+	private JLabel stworzEtykiete(String tekst, Point punkt, int szerokosc, int wysokosc) {
+		
 		JLabel etykieta = new JLabel();
 		etykieta.setHorizontalAlignment(JLabel.CENTER);
 		etykieta.setVerticalAlignment(JLabel.CENTER);
 		etykieta.setText(tekst);
-		etykieta.setBounds(new Rectangle(punkt, new Dimension(szerokosc,
-				wysokosc)));
+		etykieta.setBounds(new Rectangle(punkt, new Dimension(szerokosc,wysokosc)));
 
 		return etykieta;
 	}
@@ -121,10 +120,9 @@ public class DniMiesiaca {
 		wypelnijTabele();
 	}
 
-	 public int zwrocMiesiac() {
-	int i= calendar.get(Calendar.MONTH);
-	 return i;
-	 }
+	public int zwrocMiesiac() {
+		return calendar.get(Calendar.MONTH);
+	}
 
 	public int zwrocTabele(int i, int j) {
 		return this.dni[i][j];

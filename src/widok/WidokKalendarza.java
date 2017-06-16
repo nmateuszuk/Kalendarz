@@ -1,7 +1,7 @@
 package widok;
 
 import java.awt.EventQueue;
-import java.awt.Point;
+//import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,12 +14,14 @@ import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import java.util.Calendar;
+//import java.util.Calendar;
 import java.util.Date;
 
-import kontroler.ObslugaKalendarza;
+//import kontroler.ObslugaKalendarza;
 
 public class WidokKalendarza extends JFrame {
+
+	private static final long serialVersionUID = -4648184243150059508L;
 
 	private JPanel contentPane;
 	
@@ -31,16 +33,18 @@ public class WidokKalendarza extends JFrame {
 	
 	///////////////////////////////////////////////////////////////////////////////Launch the application
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WidokKalendarza frame = new WidokKalendarza();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+		EventQueue.invokeLater(
+			new Runnable() {
+				public void run() {
+					try {
+						WidokKalendarza frame = new WidokKalendarza();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
-		});
+		);
 	}
 
 	///////////////////////////////////////Create the frame.
