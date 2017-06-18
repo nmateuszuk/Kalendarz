@@ -16,12 +16,15 @@ import widok.OknoNowychZdarzen;
 import widok.WidokKalendarza;
 
 public class PrzyciskiDniObsluga implements ActionListener{
+	
+	Organizer org;
 	private int dzien;
 	private int miesiac;
 	private int rok;
 	private JTextArea DzisiejszeWydarzenia;
 	
-	public PrzyciskiDniObsluga(int dzien, int miesiac, int rok , JTextArea dzisiejszeWydarzenia){
+	public PrzyciskiDniObsluga(Organizer org, int dzien, int miesiac, int rok , JTextArea dzisiejszeWydarzenia){
+		this.org = org;
 		this.dzien= dzien;
 		this. miesiac= miesiac; 
 		this.rok = rok;
@@ -30,8 +33,6 @@ public class PrzyciskiDniObsluga implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		SQLConnection sqlPolacz= new SQLConnection("sql.ggeasy.nazwa.pl:3306", "ggeasy_2", "ggeasy_2", "Haslo123");
-		Organizer org = new Organizer(sqlPolacz);
 		Date data= new Date(rok-1900, miesiac, dzien);
 		
 		List<Zdarzenie> lista= org.getZdarzeniaFromDay(data);

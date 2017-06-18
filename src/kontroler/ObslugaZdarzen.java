@@ -3,6 +3,7 @@ package kontroler;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import org.w3c.dom.events.MouseEvent;
 
@@ -10,25 +11,31 @@ import widok.OknoFiltrowania;
 import widok.OknoNowychZdarzen;
 
 public class ObslugaZdarzen implements ActionListener {
+	OknoNowychZdarzen okno;
+	Organizer org;
 	
-	public ObslugaZdarzen() {
-		// TODO Auto-generated constructor stub
+	public ObslugaZdarzen(OknoNowychZdarzen okno, Organizer org) {
+		this.okno = okno;
+		this.org = org;
 	}
 	
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == okno.getDodajZdarzenie()) {
+			
+			String nazwa = okno.getNazwaText().getText();
+			String opis = okno.getOpisText().getText();
+			String miejsc = okno.getMiejsceText().getText();
+		}
 
 	}
 
 	public void wywolajOknoZdarzen() {
-					OknoNowychZdarzen frame = new OknoNowychZdarzen();
-					frame.setVisible(true);
-			}
+		okno.setVisible(true);
+	}
 	
 	public void wywolajOknoFiltrowania() {
 		OknoFiltrowania frame = new OknoFiltrowania();
 		frame.setVisible(true);
 	}
-	
 	
 }

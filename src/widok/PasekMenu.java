@@ -4,6 +4,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import kontroler.Organizer;
 import kontroler.PasekMenuObsluga;
 
 public class PasekMenu {
@@ -11,10 +12,10 @@ public class PasekMenu {
 	private JMenu kafelekMenuPlik, kafelekMenuNarzedzia, kafelekMenuInformacje;
 	private JMenuItem noweZdarzenie, filtrowanieZdarzen, usuwanieZdarzen,
 			zamkniecieOkna, informacje, importXML, eksportXML, ustawienia;
-
+	Organizer org;
 	// PasekMenuObsluga obslugaMenu;
 
-	PasekMenu() {
+	PasekMenu(Organizer org) {
 
 		listaMenu = new JMenuBar();
 
@@ -57,13 +58,15 @@ public class PasekMenu {
 		
 		
 		PasekMenuObsluga obslugaMenu  = new PasekMenuObsluga(noweZdarzenie, filtrowanieZdarzen,
-		usuwanieZdarzen, zamkniecieOkna,informacje);
+		usuwanieZdarzen, zamkniecieOkna,informacje,org);
 		
 		 noweZdarzenie.addActionListener(obslugaMenu);
 		filtrowanieZdarzen.addActionListener(obslugaMenu);
 		// usuwanieZdarzen.addActionListener(obslugaMenu);
 		zamkniecieOkna.addActionListener(obslugaMenu);
 		informacje.addActionListener(obslugaMenu);
+		
+		this.org = org;
 	}
 
 	JMenuBar zwrocPasekMenu() {

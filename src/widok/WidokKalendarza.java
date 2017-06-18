@@ -26,6 +26,7 @@ import javax.swing.JTextArea;
 import org.w3c.dom.events.MouseEvent;
 
 import kontroler.ObslugaKalendarza;
+import kontroler.Organizer;
 import kontroler.PrzyciskiDniObsluga;
 import model.DniMiesiaca;
 
@@ -36,6 +37,7 @@ public class WidokKalendarza extends JFrame {
 	DniMiesiaca dniMiesiaca;
 	
 	ObslugaKalendarza kontroler;
+	Organizer org;
 	
 	static String miesiace[] = new String[] { "Styczen", "Luty", "Marzec",
 			"Kwiecien", "Maj", "Czerwiec", "Lipiec", "Sierpien", "Wrzesien",
@@ -55,15 +57,17 @@ public class WidokKalendarza extends JFrame {
 	private JPanel dniMiesiac;
 //	public int rok, miesiac;
 
-	public WidokKalendarza(DniMiesiaca dniMiesiaca) {
+	public WidokKalendarza(Organizer org,DniMiesiaca dniMiesiaca) {
+		this.org = org;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 633, 418);
 
 		this.dniMiesiaca = dniMiesiaca;
-		this.kontroler = new ObslugaKalendarza(dniMiesiaca, this);
+		this.kontroler = new ObslugaKalendarza(dniMiesiaca, this, org);
 
 		// lista menu
-		PasekMenu pasek = new PasekMenu();
+		PasekMenu pasek = new PasekMenu(org);
 		JMenuBar listaMenu = new JMenuBar();
 		setJMenuBar(listaMenu);
 		listaMenu.add(pasek.zwrocPasekMenu());
@@ -185,7 +189,7 @@ public class WidokKalendarza extends JFrame {
 					label.setBorder(BorderFactory
 							.createLineBorder(Color.RED, 1));
 
-				PrzyciskiDniObsluga dniPrzyciski= new PrzyciskiDniObsluga(dzien, dniMiesiaca.miesiac, dniMiesiaca.rok, DzisiejszeWydarzenia );
+				PrzyciskiDniObsluga dniPrzyciski= new PrzyciskiDniObsluga(org,dzien, dniMiesiaca.miesiac, dniMiesiaca.rok, DzisiejszeWydarzenia );
 				label.addActionListener(dniPrzyciski);
 				
 				dniMiesiac.add(label);

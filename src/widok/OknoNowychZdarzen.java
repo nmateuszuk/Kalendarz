@@ -24,9 +24,19 @@ import java.awt.Panel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+import kontroler.ObslugaZdarzen;
+import kontroler.Organizer;
+
 public class OknoNowychZdarzen extends JFrame {
+	
+	Organizer org;
 
 	private JPanel contentPane;
+	private TextField nazwaText;
+	private TextField opisText;
+	private TextField miejsceText;
+	private JButton dodajZdarzenie;
+
 	
 	public OknoNowychZdarzen() {
 		setTitle("Nowe zdarzenie");
@@ -36,6 +46,8 @@ public class OknoNowychZdarzen extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		
 		
 		//http://www.codejava.net/java-se/swing/how-to-use-jdatepicker-to-display-calendar-component
 		
@@ -52,32 +64,32 @@ public class OknoNowychZdarzen extends JFrame {
 		datePicker.getJFormattedTextField().setText("wybierz date");
 		contentPane.add(datePicker);
 		
-		TextField zdarzenieText = new TextField();
-		springLayout.putConstraint(SpringLayout.NORTH, zdarzenieText, 55, SpringLayout.SOUTH, datePicker.getJFormattedTextField());
-		springLayout.putConstraint(SpringLayout.WEST, zdarzenieText, 10, SpringLayout.WEST, datePicker);
-		springLayout.putConstraint(SpringLayout.EAST, zdarzenieText, 368, SpringLayout.WEST, datePicker);
-		datePicker.add(zdarzenieText);
+		nazwaText = new TextField();
+		springLayout.putConstraint(SpringLayout.NORTH, nazwaText, 55, SpringLayout.SOUTH, datePicker.getJFormattedTextField());
+		springLayout.putConstraint(SpringLayout.WEST, nazwaText, 10, SpringLayout.WEST, datePicker);
+		springLayout.putConstraint(SpringLayout.EAST, nazwaText, 368, SpringLayout.WEST, datePicker);
+		datePicker.add(nazwaText);
 		
 		//date picker czy content pane
 		
 		JLabel lblZdarzenie = new JLabel("Zdarzenie");
 		springLayout.putConstraint(SpringLayout.NORTH, lblZdarzenie, 31, SpringLayout.SOUTH, datePicker.getJFormattedTextField());
 		springLayout.putConstraint(SpringLayout.WEST, lblZdarzenie, 30, SpringLayout.WEST, datePicker);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblZdarzenie, -10, SpringLayout.NORTH, zdarzenieText);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblZdarzenie, -10, SpringLayout.NORTH, nazwaText);
 		springLayout.putConstraint(SpringLayout.EAST, lblZdarzenie, -24, SpringLayout.EAST, datePicker);
 		lblZdarzenie.setHorizontalAlignment(SwingConstants.CENTER);
 		datePicker.add(lblZdarzenie);
 		
 		JLabel lblMiejsce = new JLabel("Miejsce");
-		springLayout.putConstraint(SpringLayout.NORTH, lblMiejsce, 17, SpringLayout.SOUTH, zdarzenieText);
+		springLayout.putConstraint(SpringLayout.NORTH, lblMiejsce, 17, SpringLayout.SOUTH, nazwaText);
 		springLayout.putConstraint(SpringLayout.WEST, lblMiejsce, 0, SpringLayout.WEST, lblZdarzenie);
 		springLayout.putConstraint(SpringLayout.EAST, lblMiejsce, 0, SpringLayout.EAST, datePicker.getJFormattedTextField());
 		lblMiejsce.setHorizontalAlignment(SwingConstants.CENTER);
 		datePicker.add(lblMiejsce);
 		
-		TextField miejsceText = new TextField();
+		miejsceText = new TextField();
 		springLayout.putConstraint(SpringLayout.NORTH, miejsceText, 6, SpringLayout.SOUTH, lblMiejsce);
-		springLayout.putConstraint(SpringLayout.WEST, miejsceText, 0, SpringLayout.WEST, zdarzenieText);
+		springLayout.putConstraint(SpringLayout.WEST, miejsceText, 0, SpringLayout.WEST, nazwaText);
 		springLayout.putConstraint(SpringLayout.EAST, miejsceText, -10, SpringLayout.EAST, datePicker);
 		datePicker.add(miejsceText);
 		
@@ -88,11 +100,11 @@ public class OknoNowychZdarzen extends JFrame {
 		lblOpis.setHorizontalAlignment(SwingConstants.CENTER);
 		datePicker.add(lblOpis);
 		
-		TextField opisTect = new TextField();
-		springLayout.putConstraint(SpringLayout.NORTH, opisTect, 6, SpringLayout.SOUTH, lblOpis);
-		springLayout.putConstraint(SpringLayout.WEST, opisTect, 0, SpringLayout.WEST, zdarzenieText);
-		springLayout.putConstraint(SpringLayout.EAST, opisTect, 0, SpringLayout.EAST, zdarzenieText);
-		datePicker.add(opisTect);
+		opisText = new TextField();
+		springLayout.putConstraint(SpringLayout.NORTH, opisText, 6, SpringLayout.SOUTH, lblOpis);
+		springLayout.putConstraint(SpringLayout.WEST, opisText, 0, SpringLayout.WEST, nazwaText);
+		springLayout.putConstraint(SpringLayout.EAST, opisText, 0, SpringLayout.EAST, nazwaText);
+		datePicker.add(opisText);
 		
 		Date date = new Date();
 		SpinnerDateModel sm = 
@@ -107,10 +119,28 @@ public class OknoNowychZdarzen extends JFrame {
 		datePicker.add(spinner);
 		
 		
-		JButton btnNewButton = new JButton("Dodaj zdarzenie");
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 18, SpringLayout.SOUTH, opisTect);
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -140, SpringLayout.EAST, datePicker);
-		datePicker.add(btnNewButton);
+		dodajZdarzenie = new JButton("Dodaj zdarzenie");
+		springLayout.putConstraint(SpringLayout.NORTH, dodajZdarzenie, 18, SpringLayout.SOUTH, opisText);
+		springLayout.putConstraint(SpringLayout.EAST, dodajZdarzenie, -140, SpringLayout.EAST, datePicker);
+		datePicker.add(dodajZdarzenie);
 		
+		ObslugaZdarzen obsluga = new ObslugaZdarzen(this, org);
+		dodajZdarzenie.addActionListener(obsluga);	
+	}
+	
+	public TextField getNazwaText() {
+		return nazwaText;
+	}
+
+	public TextField getOpisText() {
+		return opisText;
+	}
+
+	public TextField getMiejsceText() {
+		return miejsceText;
+	}
+
+	public JButton getDodajZdarzenie() {
+		return dodajZdarzenie;
 	}
 }

@@ -13,16 +13,19 @@ import javax.swing.JLabel;
 
 import model.DniMiesiaca;
 
+import widok.OknoNowychZdarzen;
 import widok.WidokKalendarza;
 
 public class ObslugaKalendarza implements ActionListener {
 	DniMiesiaca model;
 	WidokKalendarza widok;
 	ObslugaZdarzen zdarzenia;
+	Organizer org;
 
-	public ObslugaKalendarza(DniMiesiaca model, WidokKalendarza widok) {
+	public ObslugaKalendarza(DniMiesiaca model, WidokKalendarza widok, Organizer org) {
 		this.model = model;
 		this.widok = widok;
+		this.org = org;
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -35,18 +38,20 @@ public class ObslugaKalendarza implements ActionListener {
 		}
 
 	 else if (e.getSource() == widok.getDodajWydarzeniePrzycisk()) {
-		 ObslugaZdarzen okno= new ObslugaZdarzen();
+		 ObslugaZdarzen okno = new ObslugaZdarzen(new OknoNowychZdarzen(),org);
 			//SQLConnection nowePolaczenie= new SQLConnection();
 			okno.wywolajOknoZdarzen();
 			//nowePolaczenie.addZdarzenieToSQL ();
 	}
 		/////////////////////////////akcja na labelki dni
 	 else if (e.getSource() == widok.getDodajWydarzeniePrzycisk()) {
-		 ObslugaZdarzen okno= new ObslugaZdarzen();
+		 ObslugaZdarzen okno= new ObslugaZdarzen(new OknoNowychZdarzen(),org);
 			//SQLConnection nowePolaczenie= new SQLConnection();
 			okno.wywolajOknoZdarzen();
 			//nowePolaczenie.addZdarzenieToSQL ();
 	}
+		
+		
 		
 		
 		
