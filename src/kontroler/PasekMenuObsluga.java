@@ -37,7 +37,8 @@ import widok.OknoNowychZdarzen;
 			}
 			
 			if(e.getSource()==usuwanieZdarzen){
-			//	new UsuwanieZdarzenia();
+				ObslugaZdarzen okno= new ObslugaZdarzen();
+				okno.wywolajOknoFiltrowania();
 			}
 			
 			if(e.getSource()==zamkniecieOkna){

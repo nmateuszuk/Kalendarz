@@ -21,13 +21,18 @@ import java.awt.event.MouseListener;
 import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
 import javax.swing.JTextArea;
 
 import org.w3c.dom.events.MouseEvent;
 
 import kontroler.ObslugaKalendarza;
+import kontroler.Organizer;
 import kontroler.PrzyciskiDniObsluga;
+import kontroler.SQLConnection;
 import model.DniMiesiaca;
+import model.Zdarzenie;
 
 public class WidokKalendarza extends JFrame {
 
@@ -184,7 +189,19 @@ public class WidokKalendarza extends JFrame {
 						&& dzien == date.getDate())
 					label.setBorder(BorderFactory
 							.createLineBorder(Color.RED, 1));
-
+//////////////////////////////////////////
+//				SQLConnection sqlPolacz= new SQLConnection("sql.ggeasy.nazwa.pl:3306", "ggeasy_2", "ggeasy_2", "Haslo123");
+//				Organizer org = new Organizer(sqlPolacz);
+//				Date data= new Date(dniMiesiaca.rok-1900, dniMiesiaca.miesiac,dzien);
+//				
+//				List<Zdarzenie> lista= org.getZdarzeniaFromDay(data);
+//				if (lista.size()!=0)
+//				{
+//					label.setBorder(BorderFactory
+//							.createLineBorder(Color.BLUE, 1));
+//				}
+//				
+				
 				PrzyciskiDniObsluga dniPrzyciski= new PrzyciskiDniObsluga(dzien, dniMiesiaca.miesiac, dniMiesiaca.rok, DzisiejszeWydarzenia );
 				label.addActionListener(dniPrzyciski);
 				

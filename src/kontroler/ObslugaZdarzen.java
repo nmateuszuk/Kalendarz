@@ -30,5 +30,10 @@ public class ObslugaZdarzen implements ActionListener {
 		frame.setVisible(true);
 	}
 	
+//	public void wywolajOknoUsuwania() {
+//		OknoUsuwania frame = new OknoUsuwania();
+//		frame.setVisible(true);
+//	}
+	
 	
 }
