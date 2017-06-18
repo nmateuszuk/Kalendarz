@@ -1,12 +1,14 @@
 package widok;
 
 //import java.awt.Color;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
 //import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
@@ -49,55 +51,8 @@ public class DniMiesiaca {
 				}
 			}
 		}
-
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 7; j++) {
-				Point punkt = new Point(j * 38, i * 30);
-				int szerokosc = 37, wysokosc = 29;
-				if (dni[i][j] == 0) {
-					dniEtykiety[i][j] = stworzEtykiete(" ", punkt, szerokosc,
-							wysokosc);
-				} else {
-					dniEtykiety[i][j] = stworzEtykiete(
-							Integer.toString(dni[i][j]), punkt, szerokosc,
-							wysokosc);
-				}
-				//dniEtykiety[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-				
-				// if (ObslugaKalendarza.aktualnyRok == aktualnaData.getYear() +
-				// 1900
-				// &&
-				// ObslugaKalendarza.miesiace[ObslugaKalendarza.aktualnyMiesiac]
-				// == ObslugaKalendarza.miesiace[aktualnaData
-				// .getMonth()]
-				// && (dzis.zwrocTabele(i, j) == aktualnaData.getDate()))
-				// dniLabel[i][j].setBorder(BorderFactory.createLineBorder(
-				// Color.RED, 1));
-				// else
-				// dniLabel[i][j].setBorder(null);
-
-				// contentPane.add(dniLabel[i][j]);
 			}
-		}
 
-		// for (int i = 0; i < 6; i++) {
-		// for (int j = 0; j < 7; j++) {
-		// System.out.print(dni[i][j] + " ");
-		// }
-		// System.out.print("\n");
-		// }
-	}
-
-	private JLabel stworzEtykiete(String tekst, Point punkt, int szerokosc, int wysokosc) {
-		
-		JLabel etykieta = new JLabel();
-		etykieta.setHorizontalAlignment(JLabel.CENTER);
-		etykieta.setVerticalAlignment(JLabel.CENTER);
-		etykieta.setText(tekst);
-		etykieta.setBounds(new Rectangle(punkt, new Dimension(szerokosc,wysokosc)));
-
-		return etykieta;
-	}
 
 	private int dzienTygodnia() {
 		// DAY_OF_WEEK zwraca liczbe od 1 (niedziela) do 7 (sobota)
@@ -131,6 +86,5 @@ public class DniMiesiaca {
 	public JLabel zwrocEtykiete(int i, int j) {
 		return this.dniEtykiety[i][j];
 	}
-	
-	
+
 }

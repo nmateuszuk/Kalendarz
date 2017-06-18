@@ -1,33 +1,43 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Zdarzenie implements Comparable<Zdarzenie>{
 	
-	
+	private int id;
 	private Date dataZdarzenia;
 	private String nazwa;
 	private String opis;
 	private String miejsce;
 	
-	public Zdarzenie(Date dataZdarzenia, String nazwa) {
+	public Zdarzenie(int id, Date dataZdarzenia, String nazwa) {
 		super();
+		this.id = id;
 		this.dataZdarzenia = dataZdarzenia;
 		this.nazwa = nazwa;
 		this.opis = "";
 		this.miejsce = "";
 	}
 	
-	public Zdarzenie(Date dataZdarzenia, String nazwa, String opis) {
-		this(dataZdarzenia,nazwa);
+	public Zdarzenie(int id,Date dataZdarzenia, String nazwa, String opis) {
+		this(id,dataZdarzenia,nazwa);
 		this.opis = opis;
 	}
 	
-	public Zdarzenie(Date dataZdarzenia, String nazwa, String opis, String miejsce) {
-		this(dataZdarzenia,nazwa,opis);
+	public Zdarzenie(int id,Date dataZdarzenia, String nazwa, String opis, String miejsce) {
+		this(id,dataZdarzenia,nazwa,opis);
 		this.miejsce = miejsce;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	//public void setId(int id) {
+	//	this.id = id;
+	//}
+
 	public Date getDataZdarzenia() {
 		return dataZdarzenia;
 	}
@@ -59,8 +69,13 @@ public class Zdarzenie implements Comparable<Zdarzenie>{
 
 	@Override
 	public String toString() {
-		return "Zdarzenie [dataZdarzenia=" + dataZdarzenia + ", nazwa=" + nazwa
-				+ ", opis=" + opis + ", miejsce=" + miejsce + "]";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String stringDate = sdf.format(dataZdarzenia);
+		
+		return "Zdarzenie [id=" + id + ", dataZdarzenia=" + stringDate
+				+ ", nazwa=" + nazwa + ", opis=" + opis + ", miejsce="
+				+ miejsce + "]";
 	}
+
 	
 }

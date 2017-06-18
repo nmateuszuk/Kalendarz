@@ -15,12 +15,18 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JTextArea;
 
+import org.w3c.dom.events.MouseEvent;
+
 import kontroler.ObslugaKalendarza;
+import kontroler.PrzyciskiDniObsluga;
 import model.DniMiesiaca;
 
 public class WidokKalendarza extends JFrame {
@@ -28,7 +34,9 @@ public class WidokKalendarza extends JFrame {
 	private JPanel contentPane;
 
 	DniMiesiaca dniMiesiaca;
-
+	
+	ObslugaKalendarza kontroler;
+	
 	static String miesiace[] = new String[] { "Styczen", "Luty", "Marzec",
 			"Kwiecien", "Maj", "Czerwiec", "Lipiec", "Sierpien", "Wrzesien",
 			"Pazdziernik", "Listopad", "Grudzien" };
@@ -41,16 +49,18 @@ public class WidokKalendarza extends JFrame {
 	private JButton ustawieniaPrzycisk;
 	private JButton dodajWydarzeniePrzycisk;
 	private JButton dzisiajPrzycisk;
-
+	private JTextArea DzisiejszeWydarzenia;
 	private JLabel miesiacEtykieta;
 
 	private JPanel dniMiesiac;
+//	public int rok, miesiac;
 
 	public WidokKalendarza(DniMiesiaca dniMiesiaca) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 633, 418);
 
 		this.dniMiesiaca = dniMiesiaca;
+		this.kontroler = new ObslugaKalendarza(dniMiesiaca, this);
 
 		// lista menu
 		PasekMenu pasek = new PasekMenu();
@@ -80,7 +90,7 @@ public class WidokKalendarza extends JFrame {
 		getLewyPrzycisk().setBounds(300, 50, 40, 40);
 		// lewyPrzycisk.setText("<");
 		getLewyPrzycisk().setBorder(
-				BorderFactory.createLineBorder(Color.white, 1));
+				BorderFactory.createLineBorder(Color.white, 0));
 		contentPane.add(getLewyPrzycisk());
 
 		prawyPrzycisk = new JButton(">");
@@ -120,24 +130,31 @@ public class WidokKalendarza extends JFrame {
 		contentPane.add(getDodajWydarzeniePrzycisk());
 
 		dzisiajPrzycisk = new JButton("Dzisiaj");
+		dzisiajPrzycisk.setForeground(new Color(0, 0, 51));
 		getDzisiajPrzycisk().setBounds(518, 50, 76, 40);
+		dzisiajPrzycisk.setBorder(BorderFactory
+				.createLineBorder(Color.WHITE, 1));
 		contentPane.add(getDzisiajPrzycisk());
 
 		// /////////////////////////////////////////////////////////
-		JTextArea txtrDzisiejszeWydarzenia = new JTextArea();
-		txtrDzisiejszeWydarzenia.setLineWrap(true);
-		txtrDzisiejszeWydarzenia.setBounds(33, 119, 212, 180);
-		contentPane.add(txtrDzisiejszeWydarzenia);
-
+		
+		DzisiejszeWydarzenia = new JTextArea();
+		DzisiejszeWydarzenia.setEditable(false);
+		DzisiejszeWydarzenia.setLineWrap(true);
+		DzisiejszeWydarzenia.setBounds(33, 119, 212, 180);
+		contentPane.add(DzisiejszeWydarzenia);
+		
 		wypiszDniMiesiaca();
 
-		ObslugaKalendarza kontroler = new ObslugaKalendarza(dniMiesiaca, this);
+		// ///////////////////////////////////////////////////zdarzenia pod
+		// przyciski
+		
 		lewyPrzycisk.addActionListener(kontroler);
 		prawyPrzycisk.addActionListener(kontroler);
 		ustawieniaPrzycisk.addActionListener(kontroler);
 		dodajWydarzeniePrzycisk.addActionListener(kontroler);
 		dzisiajPrzycisk.addActionListener(kontroler);
-
+		
 	}
 
 	public void wypiszDniMiesiaca() {
@@ -146,17 +163,31 @@ public class WidokKalendarza extends JFrame {
 
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 7; j++) {
-				Point punkt = new Point(j * 38, i * 30);
-				JLabel label;
+				Point punkt = new Point(j * 37, i * 30);
+				JButton label;
 
 				int dzien = dniMiesiaca.zwrocTabele(i, j);
-				int szerokosc = 37, wysokosc = 29;
+				int szerokosc = 36, wysokosc = 28;
 				if (dzien == 0) {
 					label = stworzEtykiete(" ", punkt, szerokosc, wysokosc);
+					label.setBorder(BorderFactory.createLineBorder(Color.WHITE,
+							0));
 				} else {
 					label = stworzEtykiete(Integer.toString(dzien), punkt,
 							szerokosc, wysokosc);
+					label.setBorder(BorderFactory.createLineBorder(Color.WHITE,
+							0));
 				}
+				Date date = new Date();
+				if (dniMiesiaca.rok == date.getYear() + 1900
+						&& dniMiesiaca.miesiac == date.getMonth()
+						&& dzien == date.getDate())
+					label.setBorder(BorderFactory
+							.createLineBorder(Color.RED, 1));
+
+				PrzyciskiDniObsluga dniPrzyciski= new PrzyciskiDniObsluga(dzien, dniMiesiaca.miesiac, dniMiesiaca.rok, DzisiejszeWydarzenia );
+				label.addActionListener(dniPrzyciski);
+				
 				dniMiesiac.add(label);
 			}
 		}
@@ -177,11 +208,11 @@ public class WidokKalendarza extends JFrame {
 	}
 
 	// tworzy etykiety dni kalendarza
-	private JLabel stworzEtykiete(String tekst, Point punkt, int szerokosc,
+	private JButton stworzEtykiete(String tekst, Point punkt, int szerokosc,
 			int wysokosc) {
-		JLabel etykieta = new JLabel();
-		etykieta.setHorizontalAlignment(JLabel.CENTER);
-		etykieta.setVerticalAlignment(JLabel.CENTER);
+		JButton etykieta = new JButton();
+		etykieta.setHorizontalAlignment(JButton.CENTER);
+		etykieta.setVerticalAlignment(JButton.CENTER);
 		etykieta.setText(tekst);
 		etykieta.setBounds(new Rectangle(punkt, new Dimension(szerokosc,
 				wysokosc)));

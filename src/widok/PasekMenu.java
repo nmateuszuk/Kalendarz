@@ -4,6 +4,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import kontroler.PasekMenuObsluga;
+
 public class PasekMenu {
 	private JMenuBar listaMenu;
 	private JMenu kafelekMenuPlik, kafelekMenuNarzedzia, kafelekMenuInformacje;
@@ -25,8 +27,8 @@ public class PasekMenu {
 		filtrowanieZdarzen = new JMenuItem("Flitruj zdarzenia");
 		kafelekMenuPlik.add(filtrowanieZdarzen);
 
-		usuwanieZdarzen = new JMenuItem("Usuñ zdarzenie");
-		kafelekMenuPlik.add(usuwanieZdarzen);
+		//usuwanieZdarzen = new JMenuItem("Usuñ zdarzenie");
+		//kafelekMenuPlik.add(usuwanieZdarzen);
 
 		zamkniecieOkna = new JMenuItem("Zakoñcz");
 		kafelekMenuPlik.add(zamkniecieOkna);
@@ -37,13 +39,15 @@ public class PasekMenu {
 		informacje = new JMenuItem("O programie");
 		kafelekMenuInformacje.add(informacje);
 
-		// obslugaMenu = new ObslugaMenu(noweZdarzenie, filtrowanieZdarzen,
-		// usuwanieZdarzen, zamkniecieOkna,informacje);
-		// noweZdarzenie.addActionListener(obslugaMenu);
-		// filtrowanieZdarzen.addActionListener(obslugaMenu);
+		
+		PasekMenuObsluga obslugaMenu  = new PasekMenuObsluga(noweZdarzenie, filtrowanieZdarzen,
+		usuwanieZdarzen, zamkniecieOkna,informacje);
+		
+		 noweZdarzenie.addActionListener(obslugaMenu);
+		filtrowanieZdarzen.addActionListener(obslugaMenu);
 		// usuwanieZdarzen.addActionListener(obslugaMenu);
-		// zamkniecieOkna.addActionListener(obslugaMenu);
-		// informacje.addActionListener(obslugaMenu);
+		zamkniecieOkna.addActionListener(obslugaMenu);
+		informacje.addActionListener(obslugaMenu);
 	}
 
 	JMenuBar zwrocPasekMenu() {

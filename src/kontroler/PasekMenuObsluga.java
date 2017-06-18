@@ -4,12 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 
+import widok.OProgramie;
+import widok.OknoFiltrowania;
+import widok.OknoNowychZdarzen;
+
 
 	public class PasekMenuObsluga implements ActionListener{
 		JMenuItem noweZdarzenie, filtrowanieZdarzen, usuwanieZdarzen, zamkniecieOkna, ustawienia, wyswietlanieKalendarza,
 		 informacje;
 		
-		PasekMenuObsluga(JMenuItem noweZdarzenie, JMenuItem filtrowanieZdarzen, JMenuItem usuwanieZdarzen,
+		public PasekMenuObsluga(JMenuItem noweZdarzenie, JMenuItem filtrowanieZdarzen, JMenuItem usuwanieZdarzen,
 				JMenuItem zamkniecieOkna, JMenuItem informacje){
 			this.noweZdarzenie = noweZdarzenie;
 			this.filtrowanieZdarzen = filtrowanieZdarzen;
@@ -21,11 +25,15 @@ import javax.swing.JMenuItem;
 		//@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==noweZdarzenie){
-				//new NoweZdarzenie();
+				ObslugaZdarzen okno= new ObslugaZdarzen();
+				//SQLConnection nowePolaczenie= new SQLConnection();
+				okno.wywolajOknoZdarzen();
+				//nowePolaczenie.addZdarzenieToSQL ();
 			}
 			
 			if(e.getSource()==filtrowanieZdarzen){
-				//new OknoFiltrowania();
+				ObslugaZdarzen okno= new ObslugaZdarzen();
+				okno.wywolajOknoFiltrowania();
 			}
 			
 			if(e.getSource()==usuwanieZdarzen){
@@ -37,7 +45,8 @@ import javax.swing.JMenuItem;
 			}
 			
 			if(e.getSource()==informacje){
-				//new InformacjeKoncowe();
+				OProgramie okno= new OProgramie();
+				okno.wywolajOknoProgram();
 			}
 			
 	}
