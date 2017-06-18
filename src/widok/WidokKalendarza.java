@@ -76,13 +76,13 @@ public class WidokKalendarza extends JFrame {
 
 		contentPane.setLayout(null);
 
-		ustawieniaPrzycisk = new JButton("Ustawienia");
-		getUstawieniaPrzycisk().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		getUstawieniaPrzycisk().setBounds(398, 310, 196, 37);
-		contentPane.add(getUstawieniaPrzycisk());
+//		ustawieniaPrzycisk = new JButton("Ustawienia");
+//		getUstawieniaPrzycisk().addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//			}
+//		});
+//		getUstawieniaPrzycisk().setBounds(398, 310, 196, 37);
+//		contentPane.add(getUstawieniaPrzycisk());
 
 		// kalendarz//////////////////////////////////////////////////////////
 
@@ -151,7 +151,7 @@ public class WidokKalendarza extends JFrame {
 		
 		lewyPrzycisk.addActionListener(kontroler);
 		prawyPrzycisk.addActionListener(kontroler);
-		ustawieniaPrzycisk.addActionListener(kontroler);
+		//ustawieniaPrzycisk.addActionListener(kontroler);
 		dodajWydarzeniePrzycisk.addActionListener(kontroler);
 		dzisiajPrzycisk.addActionListener(kontroler);
 		
