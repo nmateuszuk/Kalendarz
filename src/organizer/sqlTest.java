@@ -1,3 +1,4 @@
+package organizer;
 import java.sql.*;
 
 
@@ -42,7 +43,7 @@ public class sqlTest {
 		System.out.println("Failed to make connection!");
 	}
 	
-	Statement stmt = connection.createStatement();
+	//Statement stmt = connection.createStatement();
 	
     //int rs = stmt.executeUpdate("CREATE TABLE zdarzenia (data DATETIME, nazwa varchar(40), opis varchar(2048), miejsce varchar(40));");
     //int rs = stmt.executeUpdate("INSERT INTO zdarzenia VALUES('2017-06-19 08:30:00', 'Odpowiedz z projektu', 'Bedziemy odpowiadac z projektu', 'Politechnika');");
@@ -50,9 +51,9 @@ public class sqlTest {
     //int rs = stmt.executeUpdate("INSERT INTO zdarzenia VALUES('2017-06-21 12:00:00', 'Sroda', 'To bedzie poprostu sroda', 'Politechnika');");
     
     //while (rs.next()) {
-    //    int x = rs.getInt("a");
-    //    String s = rs.getString("b");
-    //    float f = rs.getFloat("c");
+    //   int x = rs.getInt("a");
+    //   String s = rs.getString("b");
+    //   float f = rs.getFloat("c");
     //}
   }
 }

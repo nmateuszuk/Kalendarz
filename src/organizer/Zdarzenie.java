@@ -1,6 +1,10 @@
+package organizer;
+
 import java.util.Date;
 
-public class Zdarzenie {
+public class Zdarzenie implements Comparable<Zdarzenie>{
+	
+	
 	private Date dataZdarzenia;
 	private String nazwa;
 	private String opis;
@@ -47,6 +51,16 @@ public class Zdarzenie {
 	}
 	public void setMiejsce(String miejsce) {
 		this.miejsce = miejsce;
+	}
+
+	public int compareTo(Zdarzenie o) {
+		return this.dataZdarzenia.compareTo(o.getDataZdarzenia());
+	}
+
+	@Override
+	public String toString() {
+		return "Zdarzenie [dataZdarzenia=" + dataZdarzenia + ", nazwa=" + nazwa
+				+ ", opis=" + opis + ", miejsce=" + miejsce + "]";
 	}
 	
 }
